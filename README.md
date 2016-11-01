@@ -1,7 +1,6 @@
 # MyStudyAbroadJournal
-<hr>
-A cool web app for sharing and viewing study abroad experiences
 =======
+A cool web app for sharing and viewing study abroad experiences
 
 ## Summary
 
