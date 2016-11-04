@@ -6,26 +6,15 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import Jokes from './components/Jokes'
+import App from './components/App'
 import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-) (
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav> 
-      {children}
-    </div>
-)
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={App}>
         <IndexRedirect to="/jokes" />
+        <Route path="/login" component={Login}/>
         <Route path="/jokes" component={Jokes} />
       </Route>
     </Router>
