@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
-// <Link to={auth? `/user` : `/login`}>{auth? `Hello, ${auth.name}` : `Login/SignUp`}</Link>
+
+
 export const Navbar = ({auth, logout}) => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
