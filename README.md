@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/kcode20/MyStudyAbroadJournal.png?label=ready&title=Ready)](https://waffle.io/kcode20/MyStudyAbroadJournal)
 # My Study Abroad Journal
 
 ###### A cool web app for sharing and viewing study abroad experiences
