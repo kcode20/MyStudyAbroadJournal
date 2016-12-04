@@ -5,5 +5,8 @@
 // to get access to the User model.
 
 const User = require('./user')
+const Place= require('./place')
 
-module.exports = {User}
+User.belongsTo(Place);
+
+module.exports = {User, Place}

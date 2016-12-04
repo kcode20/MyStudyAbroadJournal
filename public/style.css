@@ -1,0 +1,51 @@
+
+/*.col-md-8{
+	background-color: red;
+	height:100vh;
+}
+.col-md-4{
+	background-color: green;
+}*/
+
+.navbar.navbar-default {
+	margin: 0px;
+
+}
+.user_nav {
+	border-radius: 50%;
+}
+.home-cover {
+  height:100vh; 
+  color:white;
+  background: url('https://static.pexels.com/photos/59519/pexels-photo-59519.jpeg') no-repeat center center fixed;
+  background-size:cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navbar-default{
+	background-color:black;
+	border: black solid;
+	border-radius: 0;
+}
+
+.well{
+	width: 25%;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	border:solid rgba(0, 0, 0, 0.5);
+}
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.green{
+	color: green;
+}

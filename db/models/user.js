@@ -6,6 +6,10 @@ const db = require('APP/db')
 
 const User = db.define('users', {
   name: Sequelize.STRING,  
+  pictureURL: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   email: {
     type: Sequelize.STRING,
     validate: {
