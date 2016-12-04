@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {browserHistory, Link} from 'react-router'
 
 
 export const Navbar = ({auth, logout}) => (
@@ -35,7 +35,7 @@ export const Navbar = ({auth, logout}) => (
                                         <li role="separator" className="divider"></li>
                                         <li><a href="#">Report A Problem</a></li>
                                         <li role="separator" className="divider"></li>
-                                        <li><a onClick={()=> logout()} href="#">Logout</a></li>
+                                        <li><a onClick={()=> logout().then(()=> browserHistory.push('/login'))} href="#">Logout</a></li>
                                       </ul>
                                     </li>
                           : <span><Link to='/login'>Login |</Link><Link to="/signup"> Sign Up </Link></span> }</a></li>

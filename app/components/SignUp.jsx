@@ -35,11 +35,11 @@ export class SignUp extends React.Component{
                 }
               })
             }}>
-              <input className="form-control" name="user"/>
+              Name: <input className="form-control" name="user"/>
               <br/>
-              <input className="form-control" name="username" />
+              UserName: <input className="form-control" name="username" />
               <br/>
-              <input className="form-control" name="password" type="password" />
+              Password: <input className="form-control" name="password" type="password" />
               <br/>
               <button className='btn btn-primary' type="submit" value="Signup" > Signup </button>
             </form>

@@ -27,11 +27,9 @@ export const getPlaceAsync = function (placeId) {    //how to get the place of a
   return function (dispatch) { 
     fetch('/api/place/' + placeId)
       .then(user => user.json())
-      .then(place => { 
-        console.log("I am gonna run place right now!!", place)
-        return dispatch(update(place))
+      .then(place => {
+        dispatch(update(place))
       })
-      .then(() => { console.log("update place done!!!! --------")})
       .catch(err => console.error(err));
   };
 };

@@ -28,9 +28,7 @@ export const login = (username, password) =>
       {username, password})
       .then(() => {
          return dispatch(whoami())
-       }
-        )
-      .then(()=> {console.log("the async login is finished")})
+       })
       .catch(() => dispatch(whoami()))      
 
 export const logout = () =>
@@ -47,10 +45,8 @@ export const whoami = () =>
         return dispatch(authenticated(user))
       })
       .then(thunk => {
-        console.log("getPlaceAsync is about to be called!")
-        return dispatch(getPlaceAsync(thunk.user.place_id))
+        dispatch(getPlaceAsync(thunk.user.place_id))
       })
-      .then(()=>{ console.log("who am I is done")})
       .catch(failed => dispatch(authenticated(null)))
 
 export default reducer
