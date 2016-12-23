@@ -1,15 +1,15 @@
+import React, { Component } from 'react';
+import {Map} from 'google-maps-react';
 
 /* 
-
 	This component renders a map of where the student has studied abroad.
-	Potentially, this will also render markers of where the student has visited.
-
+	Potentially, this will also render markers of where the student has visited with 
+	pictures that they took at that location.
 */
 
 
 //--------------------- MAP COMPONENT -------------------//
-import React, { Component } from 'react';
-import {Map} from 'google-maps-react';
+
 //Map Key: AIzaSyB07jf1Z405Jv9QelQTOOVcejPh96NvMSU
 
 export class map extends Component{
@@ -24,18 +24,13 @@ export class map extends Component{
 	}
 } 
 
-
-
-
-
-
 //------------------- MAP CONTAINER -------------------//
 import {connect} from 'react-redux';
 
 
 const mapStateToProps = function(state) {
-  console.log(state);
   return {
+  	 // pass down the current place state to center the map around
     place: state.place
   };
 };

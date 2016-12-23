@@ -1,7 +1,9 @@
-import axios from 'axios'
-import {getPlaceAsync} from './place'
+import axios from 'axios';
+import {getPlaceAsync} from './place';
+import * as firebase from 'firebase';
 
-const reducer = (state=null, action) => {
+//------------------ Auth Reducer ------------------------//
+export default (state=null, action) => {
   switch(action.type) {
   case AUTHENTICATED:
     return action.user  
@@ -9,44 +11,50 @@ const reducer = (state=null, action) => {
   return state
 }
 
+//------------------- Auth Actions ----------------------//
 const AUTHENTICATED = 'AUTHENTICATED'
+
+//------------------- Auth Actions Creators----------------------//
 export const authenticated = user => ({
   type: AUTHENTICATED, user
 })
 
-export const signup = (name, email, password) => 
+//------------------- Auth Async Action Creators (Thunk) ----------------------//
+// when the auth changes (login, signup, signout), update the state 
+export const onAuthChange= () => 
+  dispatch => {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if(firebaseUser) {
+        dispatch(authenticated(firebaseUser))
+        }
+      else {
+        dispatch(authenticated(null))
+      };
+    });
+  };
+
+
+//Login with Firebase then update the state with the user 
+export const login = (email, password) => 
   dispatch => 
-    axios.post('/api/users', {name, email, password})
+    firebase.auth().signInWithEmailAndPassword(email, password)
     .then((newUser) => {
-      dispatch(login(newUser.data.email, newUser.data.password))
+     return dispatch(authenticated(newUser))
     })
     .catch(failed => dispatch(authenticated(null)));
 
-export const login = (username, password) =>
-  dispatch =>
-    axios.post('/api/auth/local/login',
-      {username, password})
-      .then(() => {
-         return dispatch(whoami())
-       })
-      .catch(() => dispatch(whoami()))      
-
+//Signup a user to firebase then update the state with the user
+export const signup = (email, password) => 
+  dispatch => 
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((newUser) => {
+      console.log('user created?')
+     return dispatch(authenticated(newUser))
+    })
+    .catch(failed => dispatch(authenticated(null)));
+     
+//Logout with firebase then update the state to be null
 export const logout = () =>
   dispatch =>
-    axios.post('/api/auth/logout')
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
-
-export const whoami = () =>
-  dispatch =>
-    axios.get('/api/auth/whoami')
-      .then(response => {
-        const user = response.data
-        return dispatch(authenticated(user))
-      })
-      .then(thunk => {
-        dispatch(getPlaceAsync(thunk.user.place_id))
-      })
-      .catch(failed => dispatch(authenticated(null)))
-
-export default reducer
+    firebase.auth().signOut()
+      .then(() => dispatch(onAuthChange()))

@@ -1,7 +1,7 @@
 {
   "name": "mystudyabroadjournal",
   "version": "0.0.1",
-  "description": "A happy little skeleton.",
+  "description": "A cool web app that allows students that studied abroad to share their experiences",
   "main": "index.js",
   "scripts": {
     "test": "check-node-version --node '>= 6.7.0' && bin/setup && mocha --compilers js:babel-register app/**/*.test.js app/**/*.test.jsx db/**/*.test.js server/**/*.test.js",
@@ -20,7 +20,7 @@
     "redux",
     "skeleton"
   ],
-  "author": "Ashi Krishnan <me@ashi.works>",
+  "author": "Khristian Brooks <kh.brooks02@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/queerviolet/bones/issues"
@@ -39,6 +39,7 @@
     "enzyme": "^2.5.1",
     "epilogue": "^0.7.0",
     "express": "^4.14.0",
+    "firebase": "^3.6.4",
     "google-maps-react": "^1.0.19",
     "lodash": "^4.16.6",
     "passport": "^0.3.2",

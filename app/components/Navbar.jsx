@@ -1,6 +1,16 @@
 import React from 'react'
 import {browserHistory, Link} from 'react-router'
 
+/* 
+  The Navbar Component is fixed to the top of the screen. The user will always be able to see it. 
+  It's functionality is divided into two parts: 
+    1. Navigation: it has quick links to login/signup and will redirect to login once 
+      the user is logged out. It also has links to reporting problems, and changing settings.
+    2. Signaling State Change: the navbar has notifications, messaging, and glyphicons that in 
+      the future will alert the user on important updates or states.
+*/
+
+//--------------------- NavBar Component -----------------------------//
 
 export const Navbar = ({auth, logout}) => (
   <nav className="navbar navbar-default navbar-fixed-top">
@@ -45,11 +55,27 @@ export const Navbar = ({auth, logout}) => (
   </nav>
 )
 
-
+//--------------------- LOGIN CONTAINER -------------------//
 import {connect} from 'react-redux'
 import {logout} from 'APP/app/reducers/auth'
 
+const mapStateToProps= function (state) {
+  return {
+      // pass down the authenticated user from state to toggle between different states in the navbar
+      auth: state.auth,
+  };
+}
+
+const mapDispatchToProps= function (dispatch) {
+  return {
+      // pass down the function logout to logout users in firebase
+      logout: function(){
+        return dispatch(logout());
+      },
+  };
+}
+
 export default connect (
-  ({auth}) => ({auth}),
-  {logout}
+  mapStateToProps,
+  mapDispatchToProps
 ) (Navbar)
