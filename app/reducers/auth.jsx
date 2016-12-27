@@ -3,7 +3,7 @@ import {getPlaceAsync} from './place';
 import * as firebase from 'firebase';
 
 //------------------ Auth Reducer ------------------------//
-export default (state=null, action) => {
+const reducer = (state=null, action) => {
   switch(action.type) {
   case AUTHENTICATED:
     return action.user  
@@ -11,6 +11,7 @@ export default (state=null, action) => {
   return state
 }
 
+export default reducer;
 //------------------- Auth Actions ----------------------//
 const AUTHENTICATED = 'AUTHENTICATED'
 
@@ -29,10 +30,9 @@ export const onAuthChange= () =>
         }
       else {
         dispatch(authenticated(null))
-      };
+      }; 
     });
   };
-
 
 //Login with Firebase then update the state with the user 
 export const login = (email, password) => 
@@ -58,3 +58,8 @@ export const logout = () =>
   dispatch =>
     firebase.auth().signOut()
       .then(() => dispatch(onAuthChange()))
+
+//Gets the currently logged in user. 
+export const whoami = function (){
+    return firebase.auth().currentUser;
+}

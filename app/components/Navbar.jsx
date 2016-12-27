@@ -48,7 +48,7 @@ export const Navbar = ({auth, logout}) => (
                                         <li><a onClick={()=> logout().then(()=> browserHistory.push('/login'))} href="#">Logout</a></li>
                                       </ul>
                                     </li>
-                          : <span><Link to='/login'>Login |</Link><Link to="/signup"> Sign Up </Link></span> }</a></li>
+                          : <span><Link to='/login'>Login</Link><span> |</span><Link to="/signup"> Sign Up </Link></span> }</a></li>
         </ul>
       </div>
     </div>

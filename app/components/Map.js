@@ -10,16 +10,14 @@ import {Map} from 'google-maps-react';
 
 //--------------------- MAP COMPONENT -------------------//
 
-//Map Key: AIzaSyB07jf1Z405Jv9QelQTOOVcejPh96NvMSU
-
 export class map extends Component{
 	render(){
 		return(
 			<Map google={window.google}
-					zoom={7}
+					zoom={6}
 			    initialCenter={{lat: this.props.place.location[0],
 							lng: this.props.place.location[1]}}
-			    style={{width: '100%', height: '75%', position: 'relative'}}/>
+			    style={{width: '100%', height: '100%'}}/>
 		)
 	}
 } 
