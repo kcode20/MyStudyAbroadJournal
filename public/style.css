@@ -1,14 +1,17 @@
-
-/*.col-md-8{
+body{
+	padding-top: 55px;
+}
+.col-md-8{
 	background-color: red;
 	height:100vh;
 }
 .col-md-4{
 	background-color: green;
-}*/
+	height: 100vh;
+}
 
 .navbar.navbar-default {
-	margin: 0px;
+	margin: 0.05px;
 
 }
 .user_nav {

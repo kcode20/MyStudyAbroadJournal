@@ -1,43 +1,35 @@
-import React from 'react'
-import Country from './Country'
-import Location from 'react-place';
-import {browserHistory, Link} from 'react-router'
+import React from 'react';
+import {browserHistory, Link} from 'react-router';
 
+/* 
+  The Signup Component is linked to the login. If the user doesn't have an account they will be redirected
+  to this page to create an account. Once signed up they will be automatically logged in and be redirected to 
+  their user page.
+  TODO: Validate email, Give info about Password Requirements (maybe a strength bar or popup?) 
+*/
+
+//----------------------- SignUp Component ----------------------------//
 export class SignUp extends React.Component{
-
-    constructor(){
-      super();
-      this.state={
-        description: '',
-        coords: { }
-      }
-    }
-
     render(){
-      const login= this.props.login, signup=this.props.signup, newState=this.props.newState;
-      const onLocationSet = (data) => {
-          this.setState({description: data.description});
-          this.setState({coords: {lat: data.coords.lat, lng: data.coords.lng}});
-          console.log('--------------------',this.state);
-      };
+      const signup=this.props.signup, newState=this.props.newState;
       return (
           <div className="home-cover">
             <div className='container div_center well'>
             <form className='' onSubmit={evt => {
               evt.preventDefault()
-              signup(evt.target.user.value, evt.target.username.value, evt.target.password.value)
+              /* signup, if you supplied the correct credentials, redirect to the user page; 
+              else be notified that they need a new password. */
+              signup(evt.target.email.value, evt.target.password.value)
               .then(function(){
                 if(newState().auth){
                   browserHistory.push('/user')  
                 }
                 else{
-                  alert("Wrong UserName/Password!!");
+                  alert("the password must be longer than 6 characters");
                 }
               })
             }}>
-              Name: <input className="form-control" name="user"/>
-              <br/>
-              UserName: <input className="form-control" name="username" />
+              Email: <input className="form-control" name="email"/>
               <br/>
               Password: <input className="form-control" name="password" type="password" />
               <br/>
@@ -53,25 +45,19 @@ export class SignUp extends React.Component{
 
 
 //--------------------- LOGIN CONTAINER -------------------//
-import {signup} from 'APP/app/reducers/auth'
+import { signup } from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'
 import store from '../store'
 
-
-const mapStateToProps = function(state) {
-  console.log(state);
-  return {
-    user: state.auth,
-    place: state.place
-  };
-
-};
-
 const mapDispatchToProps= function (dispatch) {
+  console.log(signup);
   return {
-      signup: function(name, username, password){
-        return dispatch(signup(name, username, password))
+    // pass down the function signup to create and authenticate users in firebase
+      signup: function(email, password){
+        return dispatch( signup(email,password))
       }, 
+      /* pass down the newState function to the signup component to redirect 
+      the page once signed in based on the State Change  */
       newState: function(){
         return store.getState()
       }
@@ -79,7 +65,7 @@ const mapDispatchToProps= function (dispatch) {
   };
 
 export default connect(
-      mapStateToProps,
+      null,
      mapDispatchToProps)
 (SignUp)
 

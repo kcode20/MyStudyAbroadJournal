@@ -1,35 +1,30 @@
 
 /*
 
-  This is the view for the users profile. Once the user is signed in the are routed to their page. 
+  This is the view for the users profile. Once the user is signed in they are routed to their page. 
   It includes info on the place studied abroad, a map of area, and other user details.
+  Future implementations will also have a bucketlist and photogallery based in map.
 
 */
 
 
+
 //--------------------- USER COMPONENT -------------------//
 import React, { Component } from 'react';
-import Map from './Map'
+import Map from './Map';
 
 export class User extends Component {  
-  componentDidMount(){
-    this.props.onLoadPlace(this.props.user.place_id);
-  } 
 
   render(){
-    const User=this.props.user;
+    const user=this.props.user, place=this.props.place;
     return (
       <div>
         <div className="row">
-          <div className="col-md-4">
-            <h1>{User.name} Page</h1>
-            <img src={User.pictureURL} width='50px' height='50px'/>
-            <h3> Country Abroad </h3>
-            <h5> {this.props.place.country} </h5>
-            <h3> City </h3>
-            <h5> {this.props.place.city} </h5>
+          <div className="col-md-4 div_center">
+            <h1>{place.country}</h1>
+            <h1> {place.city} </h1>
           </div>
-          <div className="col-md-8"> 
+          <div className="col-md-8 div_center"> 
             <Map/>
           </div>
         </div>
@@ -44,25 +39,18 @@ import {getPlaceAsync} from '../reducers/place'
 import {connect} from 'react-redux'
 
 const mapStateToProps = function(state) {
-  console.log(state);
+  console.log("the state once in user: ", state);
   return {
+    //pass down the current user on state to display the user information.
     user: state.auth,
+    //pass down the current place on state to display user place information.
     place: state.place
-  };
-
-};
-
-const mapDispatchToProps= function (dispatch) {
-  return {
-    onLoadPlace: function(id) {
-        dispatch(getPlaceAsync(id))
-    }
   };
 };
 
 export default connect(
       mapStateToProps,
-     mapDispatchToProps)
+      null)
 (User)
 
 

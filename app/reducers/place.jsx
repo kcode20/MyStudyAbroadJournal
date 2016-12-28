@@ -1,7 +1,8 @@
-import axios from 'axios';
-import Promise from 'bluebird';
+import * as firebase from 'firebase';
+import {database} from '../firebase';
+import store from '../store';
 
-//---------------------------------------REDUCER-------------------------------//
+//--------------------------------------- PLACE REDUCER-------------------------------//
 const reducer = (state=null, action) => {
   switch(action.type) {
   case UPDATE_PLACE:
@@ -12,6 +13,7 @@ const reducer = (state=null, action) => {
   return state
 }
 
+export default reducer;
 //---------------------------------------ACTION-------------------------------//
 const UPDATE_PLACE = 'UPDATE_PLACE'
 const GET_PLACE = 'GET_PLACE'
@@ -22,23 +24,14 @@ export const update = place => ({
 export const get = place => ({
   type: GET_PLACE, place
 })
-//---------------------------------------ACTION CREATOR ASYNC (THUNK)-------------------------------//
-export const getPlaceAsync = function (placeId) {    //how to get the place of a logged in user. 
-  return function (dispatch) { 
-    fetch('/api/place/' + placeId)
-      .then(user => user.json())
-      .then(place => {
-        dispatch(update(place))
-      })
-      .catch(err => console.error(err));
-  };
-};
+//---------------------------------------ACTION CREATOR ASYNC (THUNK)-------------------------------//  
+
+//get the place for the user with specified ID from the firebase console
+export const getPlaceAsync= (userId) => {
+    return firebase.database().ref('/place/'+ userId).once('value')
+      .then(function(snapshot){
+        store.dispatch(get(snapshot.val()))
+      });
+}
 
 
-export const updateAsync = (place) =>
-  dispatch =>
-   dispatch(update(place));    
-
-
-
-export default reducer
