@@ -17,12 +17,13 @@ export class SignUp extends React.Component{
             <div className='container div_center well'>
             <form className='' onSubmit={evt => {
               evt.preventDefault()
-              /* signup, if you supplied the correct credentials, redirect to the user page; 
+              /* signup, if you supplied the correct credentials, redirect to the sign-up info page 
+              to get more information about the new user; 
               else be notified that they need a new password. */
               signup(evt.target.email.value, evt.target.password.value)
               .then(function(){
                 if(newState().auth){
-                  browserHistory.push('/user')  
+                  browserHistory.push('/user-info')  
                 }
                 else{
                   alert("the password must be longer than 6 characters");
