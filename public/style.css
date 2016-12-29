@@ -9,6 +9,11 @@ body{
 	background-color: green;
 	height: 100vh;
 }
+.vertical_center{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
 
 .navbar.navbar-default {
 	margin: 0.05px;
@@ -40,6 +45,9 @@ body{
 	border-radius: 10px;
 	border:solid rgba(0, 0, 0, 0.5);
 }
+.row{
+	position:relative;
+}
 .navbar-center
 {
     position: absolute;
@@ -48,7 +56,4 @@ body{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
-.green{
-	color: green;
 }

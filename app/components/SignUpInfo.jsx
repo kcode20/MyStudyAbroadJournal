@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import Country from './Country';
 /*
   The SignUp Info component is displayed after a user signs up for an account.
   It is used to collect relevant information from the user before navigating them to their homepage. 
 */
+
+
 
 //--------------------- SIGNUPINFO COMPONENT -------------------//
 export class SignUpInfo extends Component {  
@@ -11,8 +14,18 @@ export class SignUpInfo extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-4 div_center">
-            <h1> SignUpInfo PlaceHolder </h1>
+          <div className="col-md-8 div_center vertical_center">
+            <form className='' onSubmit={evt => {
+              evt.preventDefault()
+              /*  */
+
+            }}>
+              Name: <input className="form-control" name="email"/>
+              <br/>
+              Country: <Country/>
+              <br/>
+              <button className='btn btn-primary' type="submit" > Submit </button>
+            </form>
           </div>
         </div>
       </div>
