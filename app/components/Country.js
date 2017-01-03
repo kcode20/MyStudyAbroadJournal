@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
 import Location from 'react-place';
+import {browserHistory} from 'react-router';
 
-export default class Country extends Component {
+/* 
+  The Country Component let's the newly signed up user pick a country. And updates the state accordingly.
+  Reroutes the user to their user page. 
+*/
+
+//--------------------- Country Component -----------------------------//
+export class Country extends Component {
       constructor(){
           super();
           this.state = {
-            showReply: false,
+            showLocation: false,
+            showNext: false,
             country: ""
           }
       }
 
       render(){
-            var selectedCountry="",
-                onLocationSet = (data) => {
-                this.setState({description: data.description});
-                this.setState({coords: {lat: data.coords.lat, lng: data.coords.lng}});
-                console.log('--------------------',this.state);
+            var onLocationSet = (data) => {
+                  this.setState({showNext: true})
+                  this.props.place(this.props.auth.uid, data.description, data.coords.lat, data.coords.lng)
                 };
             return(
-
-                  <div className="content">
+                <div className="user-cover">
+                  <div className="container div_center well">
                         <form className='' onSubmit={evt => {
                           evt.preventDefault()
-                          /*  */
+                          /* 
+                          Pick the Country that will be utilized to generate the coordinates from the Location tag.
+                          Once the country is picked, disable the dropdown and change the state so that the Location 
+                          tag shows.
+                         */
                           this.state.country=evt.target.country.value;
                           console.log(evt.target.country.value);
                           $('#country').prop('disabled', 'disabled');
-                          this.setState({showReply: !this.state.showReply});
+                          this.setState({showLocation: !this.state.showLocation});
                         }}>
-                            <select name='country' id='country' className="country-dropdown form-control country">
+                        Country Abroad:
+                            <select name='country' defaultValue='US' id='country' className="country-dropdown form-control country">
                               <option value="AF">Afghanistan</option>
                               <option value="AX">Åland Islands</option>
                               <option value="AL">Albania</option>
@@ -264,13 +275,13 @@ export default class Country extends Component {
                               <option value="UA">Ukraine</option>
                               <option value="AE">United Arab Emirates</option>
                               <option value="GB">United Kingdom</option>
-                              <option value="US" selected>United States</option>
+                              <option value="US">United States</option>
                               <option value="UM">United States Minor Outlying Islands</option>
                               <option value="UY">Uruguay</option>
                               <option value="UZ">Uzbekistan</option>
                               <option value="VU">Vanuatu</option>
                               <option value="VE">Venezuela, Bolivarian Republic of</option>
-                              <option value="VN">Viet Nam</option>
+                              <option value="VN">Vietnam</option>
                               <option value="VG">Virgin Islands, British</option>
                               <option value="VI">Virgin Islands, U.S.</option>
                               <option value="WF">Wallis and Futuna</option>
@@ -279,20 +290,66 @@ export default class Country extends Component {
                               <option value="ZM">Zambia</option>
                               <option value="ZW">Zimbabwe</option>
                             </select>
-                            <button className='btn btn-primary' type="submit" > Submit </button>
+                            
+                            {!this.state.showLocation && 
+                              <div> 
+                                <br/>
+                                <button className='btn btn-primary' type="submit" > Submit </button>
+                              </div>
+                            }
                         </form>
-                        {this.state.showReply && <Location
-                        country= {this.state.country}
-                        noMatching='Sorry, I can not find {{value}}.'
-                        onLocationSet={ onLocationSet }
-                        inputProps={{
-                          style: {color: '#0099FF'},
-                          className:'location form-control',
-                          placeholder: 'Where are you?'
-                        }}/>}
-                      
+                        <br/>
+                        {this.state.showLocation && 
+                            <div>
+                              City Abroad: 
+                              <br/>
+                              <br/>
+                              <div className='awesomecomplete'>
+                                <Location
+                                country= {this.state.country}
+                                noMatching='Sorry, I can not find {{value}}.'
+                                onLocationSet={ onLocationSet }
+                                inputProps={{
+                                  style: {width:'100%'},
+                                  className:'form-control awesomecomplete',
+                                  placeholder: 'Where are you?'
+                                }}/>
+                              </div>
+                            </div>
+
+                        }
+                        <br/>
+                      {this.state.showNext && <button onClick= {() => {browserHistory.push('/user')}} className='btn btn-primary'> Next </button>}
                   </div>
+              </div>
 
             )
       }
 }
+
+
+//--------------------- Country Container -------------------//
+import { connect } from 'react-redux';
+import { setUserPlace } from 'APP/app/reducers/place';
+
+const mapStateToProps= function (state){
+      console.log('the user: ',state.auth);
+      return{
+            // pass down the authenticated user from state to set the place of user.
+            auth: state.auth
+      }
+}
+
+const mapDispatchToProps= function (dispatch) {
+  return {
+      // pass down the function place to set the location of the current firebase user
+      place: function(userId, description, lat, longitude){
+        return dispatch(setUserPlace(userId, description, lat, longitude));
+      }, 
+    }
+  };
+
+export default connect(
+     mapStateToProps,
+     mapDispatchToProps)
+(Country)

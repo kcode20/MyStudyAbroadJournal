@@ -31,6 +31,15 @@ body{
   flex-direction: column;
   justify-content: center;
 }
+.user-cover {
+  height:100vh; 
+  color:white;
+  background: url('https://cdn.pixabay.com/photo/2015/09/23/21/14/girl-954377_960_720.jpg') no-repeat center center fixed;
+  background-size:cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .navbar-default{
 	background-color:black;
@@ -56,4 +65,7 @@ body{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+.awesomecomplete{
+	color:black;
 }

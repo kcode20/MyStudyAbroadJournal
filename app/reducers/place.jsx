@@ -33,5 +33,16 @@ export const getPlaceAsync= (userId) => {
         store.dispatch(get(snapshot.val()))
       });
 }
+//update the place for the user with specified ID to the firebase console
+export const setUserPlace=(userId, description, latitude, longitude) =>{
+  const userCity=description.slice(0,description.lastIndexOf(','));
+  const userCountry=description.slice(description.lastIndexOf(',')+1);
+  firebase.database().ref('place/' + userId).set({
+    city: userCity,
+    country: userCountry,
+    location: {0: latitude, 1: longitude}
+  })
+  return getPlaceAsync(userId);
+}
 
 
