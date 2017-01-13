@@ -15,7 +15,7 @@ import App from './components/App';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import SignUpUser from './components/SignUpUser';
-import SignUpInfo from './components/Country';
+import SignUpInfo from './components/SignUpPlace';
 
 
 /* When you enter the user component, pass it the currently logged in user's place*/
