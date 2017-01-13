@@ -9,6 +9,11 @@ body{
 	background-color: green;
 	height: 100vh;
 }
+.vertical_center{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
 
 .navbar.navbar-default {
 	margin: 0.05px;
@@ -20,7 +25,16 @@ body{
 .home-cover {
   height:100vh; 
   color:white;
-  background: url('https://static.pexels.com/photos/59519/pexels-photo-59519.jpeg') no-repeat center center fixed;
+  background: url('images/pexels-photo-59519.jpeg') no-repeat center center fixed;
+  background-size:cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user-cover {
+  height:100vh; 
+  color:white;
+  background: url('images/girl-954377_1920.jpg') no-repeat center center fixed;
   background-size:cover;
   display: flex;
   flex-direction: column;
@@ -40,6 +54,9 @@ body{
 	border-radius: 10px;
 	border:solid rgba(0, 0, 0, 0.5);
 }
+.row{
+	position:relative;
+}
 .navbar-center
 {
     position: absolute;
@@ -49,6 +66,25 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
-.green{
-	color: green;
+.awesomecomplete{
+	color:black;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

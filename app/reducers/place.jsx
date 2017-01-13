@@ -28,10 +28,21 @@ export const get = place => ({
 
 //get the place for the user with specified ID from the firebase console
 export const getPlaceAsync= (userId) => {
-    return firebase.database().ref('/place/'+ userId).once('value')
+    return firebase.database().ref('/users/'+ userId +'/place').once('value')
       .then(function(snapshot){
         store.dispatch(get(snapshot.val()))
       });
+}
+//update the place for the user with specified ID to the firebase console
+export const setUserPlace=(userId, description, latitude, longitude) =>{
+  const userCity=description.slice(0,description.lastIndexOf(','));
+  const userCountry=description.slice(description.lastIndexOf(',')+1);
+  firebase.database().ref('users/' + userId +'/place').set({
+    city: userCity,
+    country: userCountry,
+    location: {0: latitude, 1: longitude}
+  })
+  return getPlaceAsync(userId);
 }
 
 

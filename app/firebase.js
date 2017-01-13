@@ -17,5 +17,7 @@ const config = {
 export default firebase.initializeApp(config);
 
 //the realtime database from our firebase app
+export const auth= firebase.auth();
 export const database= firebase.database(); 
+export const storage= firebase.storage();
 
