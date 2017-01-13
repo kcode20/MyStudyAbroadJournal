@@ -18,7 +18,7 @@ export class Login extends React.Component{
               /* login, if the login credentials are correct redirect to the user page,
                else alert the user of a Wrong Username/Password */
                 login(evt.target.username.value, evt.target.password.value)
-                .then( () => {
+                .then(() => {
                   if(newState().auth){
                     browserHistory.push('/user')  
                   } 
@@ -65,4 +65,5 @@ export default connect(
       null,
      mapDispatchToProps)
 (Login)
+
 

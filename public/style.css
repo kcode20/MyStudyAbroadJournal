@@ -25,7 +25,7 @@ body{
 .home-cover {
   height:100vh; 
   color:white;
-  background: url('https://static.pexels.com/photos/59519/pexels-photo-59519.jpeg') no-repeat center center fixed;
+  background: url('images/pexels-photo-59519.jpeg') no-repeat center center fixed;
   background-size:cover;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ body{
 .user-cover {
   height:100vh; 
   color:white;
-  background: url('https://cdn.pixabay.com/photo/2015/09/23/21/14/girl-954377_960_720.jpg') no-repeat center center fixed;
+  background: url('images/girl-954377_1920.jpg') no-repeat center center fixed;
   background-size:cover;
   display: flex;
   flex-direction: column;
@@ -68,4 +68,23 @@ body{
 }
 .awesomecomplete{
 	color:black;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

@@ -14,6 +14,7 @@ import User from './components/User';
 import App from './components/App';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import SignUpUser from './components/SignUpUser';
 import SignUpInfo from './components/Country';
 
 
@@ -30,7 +31,8 @@ render (
         <IndexRedirect to="/login" />
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={SignUp}/>
-        <Route path="/user-info" component={SignUpInfo}/>
+        <Route path="/user-info/user" component={SignUpUser}/>
+        <Route path="/user-info/place" component={SignUpInfo}/>
         <Route path="/user" component={User} onEnter={enterUser}/>
       </Route>
     </Router>

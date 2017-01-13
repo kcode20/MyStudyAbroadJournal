@@ -23,7 +23,7 @@ export class SignUp extends React.Component{
               signup(evt.target.email.value, evt.target.password.value)
               .then(function(){
                 if(newState().auth){
-                  browserHistory.push('/user-info')  
+                  browserHistory.push('/user-info/user')  
                 }
                 else{
                   alert("the password must be longer than 6 characters");
