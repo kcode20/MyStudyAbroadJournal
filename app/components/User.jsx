@@ -21,6 +21,8 @@ export class User extends Component {
       <div>
         <div className="row">
           <div className="col-md-4 div_center">
+            {this.props.user.photoURL? <img src={this.props.user.photoURL} style={{height:'100px'}}/> : <img src="APP/public/images/unknown.png"/>}
+            <h1> {this.props.user.displayName} </h1>
             <h1>{place.country}</h1>
             <h1> {place.city} </h1>
           </div>

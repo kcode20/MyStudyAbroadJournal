@@ -36,14 +36,13 @@ export const onAuthChange= () =>
 
 //Login with Firebase then update the state with the user 
 export const login = (email, password) => 
-  dispatch => {
-    console.log("I am going into login this user: ", email, " with this password: ", password)
+  dispatch => 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((newUser) => {
-     return dispatch(authenticated(newUser))
+      return dispatch(authenticated(newUser))
     })
     .catch(failed => dispatch(authenticated(null)));
-  }
+  
 
 //Signup a user to firebase then update the state with the user
 export const signup = (email, password) => 

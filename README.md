@@ -10,7 +10,7 @@ My Study Abroad Journal is a web app created with a dual purpose:
 * to allow students interested in studying abroad to learn more about study abroad and areas and schools of interest
 
 ##Some Features I Want To Implement
-- [ ] User Accounts
+- [X] User Accounts
 - [ ] Map To Pin Places Visited (With Pictures)
 - [ ] BucketList of things to do in Areas of Interest
 
