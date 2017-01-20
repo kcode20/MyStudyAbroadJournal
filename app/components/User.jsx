@@ -21,10 +21,16 @@ export class User extends Component {
       <div>
         <div className="row">
           <div className="col-md-4 div_center">
-            {this.props.user.photoURL? <img src={this.props.user.photoURL} style={{height:'100px'}}/> : <img src="APP/public/images/unknown.png"/>}
-            <h1> {this.props.user.displayName} </h1>
-            <h1>{place.country}</h1>
-            <h1> {place.city} </h1>
+            <div className="userprofile-cover">
+                {this.props.user.photoURL? <img src={this.props.user.photoURL} style={{height:'100px'}}/> : <img src="APP/public/images/unknown.png"/>}
+                <button type="button" className="btn btn-default" aria-label="Left Align">
+                  <span className="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div className="user-intro">
+              <h3> {this.props.user.displayName} </h3>
+              <p>{place.country}, {place.city} </p>
+            </div>
           </div>
           <div className="col-md-8 div_center"> 
             <Map/>
