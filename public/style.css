@@ -4,10 +4,10 @@ body{
 .col-md-8{
 	background-color: red;
 	height:100vh;
+  padding:0px;
 }
 .col-md-4{
-	background-color: green;
-	height: 100vh;
+  padding:0px;
 }
 .vertical_center{
 	position: absolute;
@@ -87,4 +87,23 @@ body{
     background: white;
     cursor: inherit;
     display: block;
+}
+.userprofile-cover{
+  position: relative;
+  background-color: #2E3239;
+  height: 100px;
+  margin-bottom:55px;
+}
+.user-intro{
+  text-align: center;
+}
+
+.userprofile-cover img{
+  border-radius: 50%;
+  position:absolute;
+  bottom:-50px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
