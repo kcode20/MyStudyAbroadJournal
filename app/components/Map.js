@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Map} from 'google-maps-react';
+import {Map, Marker} from 'google-maps-react';
 
 /* 
 	This component renders a map of where the student has studied abroad.

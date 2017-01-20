@@ -63,10 +63,11 @@ import {connect} from 'react-redux'
 import {onAuthChange} from '../reducers/auth'
 const mapDispatchToProps = function(dispatch){
   return {
+
     updateUser: function(displayName, photoURL){
-      return new Promise ((resolve, reject) => {
         /* update the current user with displayName and photoURL, 
           then update the state with the updated user */
+      return new Promise ((resolve, reject) => {
           var user = auth.currentUser;
           user.updateProfile({
             displayName,
